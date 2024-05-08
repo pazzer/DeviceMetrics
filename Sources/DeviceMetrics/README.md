@@ -2,6 +2,7 @@
 
 > The following table groups iPhones according to their point dimensions.
 
+```
 **Group 1**
 iPhone 15 Pro Max        430 x 932        1290 x 2796       460       3    6.7
 iPhone 14 Pro Max        430 x 932        1290 x 2796       460       3    6.7"
@@ -52,5 +53,5 @@ iPhone SE 3rd gen        375 x 667        750 x 1334        326       2    4.7"
 **Group 10**
 iPod Touch (7th gen)     320 x 568        640 x 1136        326       2    4"
 iPhone SE 1st gen        320 x 568        640 x 1136        326       2    4"    
-
+```
 
