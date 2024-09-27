@@ -5,28 +5,40 @@ import Foundation
 import UIKit
 
 let iPhone14ProMaxPointSize = CGSize(width: 430, height: 932)
-let iPhone14ProPointSize = CGSize(width: 393, height: 852)
-let iPhone14PlusPointSize = CGSize(width: 428, height: 926)
-let iPhone14PointSize = CGSize(width: 390, height: 844)
-let iPhone11PointSize = CGSize(width: 414, height: 896)
-let iPhone11ProMaxPointSize = CGSize(width: 414, height: 896)
-let iPhone13MiniPointSize = CGSize(width: 375, height: 812)
-let iPhone8PlusPointSize = CGSize(width: 414, height: 736)
-let iPhone8PointSize = CGSize(width: 375, height: 667)
-let iPodGen7PointSize = CGSize(width: 320, height: 568)
-let iPhone16ProPointSize = CGSize(width: 402, height: 874)
-
-let iPodGen7PixelSize = CGSize(width: 640, height: 1136)
-let iPhone8PixelSize = CGSize(width: 750, height: 1334)
-let iPhone8PlusPixelSize = CGSize(width: 1080, height: 1920)
-let iPhone13MiniPixelSize = CGSize(width: 1125, height: 2436)
-let iPhone11ProMaxPixelSize = CGSize(width: 1242, height: 2688)
-let iPhone11PixelSize = CGSize(width: 828, height: 1792)
-let iPhone14PixelSize = CGSize(width: 1170, height: 2532)
-let iPhone14PlusPixelSize = CGSize(width: 1284, height: 2778)
-let iPhone14ProPixelSize = CGSize(width: 1179, height: 2556)
 let iPhone14ProMaxPixelSize = CGSize(width: 1290, height: 2796)
+
+let iPhone14ProPointSize = CGSize(width: 393, height: 852)
+let iPhone14ProPixelSize = CGSize(width: 1179, height: 2556)
+
+let iPhone14PlusPointSize = CGSize(width: 428, height: 926)
+let iPhone14PlusPixelSize = CGSize(width: 1284, height: 2778)
+
+let iPhone14PointSize = CGSize(width: 390, height: 844)
+let iPhone14PixelSize = CGSize(width: 1170, height: 2532)
+
+let iPhone11PointSize = CGSize(width: 414, height: 896)
+let iPhone11PixelSize = CGSize(width: 828, height: 1792)
+
+let iPhone11ProMaxPointSize = CGSize(width: 414, height: 896)
+let iPhone11ProMaxPixelSize = CGSize(width: 1242, height: 2688)
+
+let iPhone13MiniPointSize = CGSize(width: 375, height: 812)
+let iPhone13MiniPixelSize = CGSize(width: 1125, height: 2436)
+
+let iPhone8PlusPointSize = CGSize(width: 414, height: 736)
+let iPhone8PlusPixelSize = CGSize(width: 1080, height: 1920)
+
+let iPhone8PointSize = CGSize(width: 375, height: 667)
+let iPhone8PixelSize = CGSize(width: 750, height: 1334)
+
+let iPodGen7PointSize = CGSize(width: 320, height: 568)
+let iPodGen7PixelSize = CGSize(width: 640, height: 1136)
+
+let iPhone16ProPointSize = CGSize(width: 402, height: 874)
 let iPhone16ProPixelSize = CGSize(width: 1206, height: 2622)
+
+let iPhone16ProMaxPointSize = CGSize(width: 440, height: 956)
+let iPhone16ProMaxPixelSize = CGSize(width: 1320, height: 2868)
 
 
 public enum iPhoneDeviceFamily {
@@ -42,6 +54,7 @@ public enum iPhoneDeviceFamily {
     case iPhone8
     case iPodGen7
     case iPhone16Pro
+    case iPhone16ProMax
 }
 
 public extension iPhoneDeviceFamily {
@@ -70,6 +83,8 @@ public extension iPhoneDeviceFamily {
             self = .iPhone14ProMax
         case (iPhone16ProPointSize, 3):
             self = .iPhone16Pro
+        case (iPhone16ProMaxPointSize, 3):
+            self = .iPhone16ProMax
         default:
             return nil
         }
@@ -108,7 +123,9 @@ public extension iPhoneDeviceFamily {
         case .iPhone14ProMax:
             return iPhone14ProMaxPointSize
         case .iPhone16Pro:
-            return iPhone14ProPointSize
+            return iPhone16ProPointSize
+        case .iPhone16ProMax:
+            return iPhone16ProMaxPointSize
         }
         
     }
@@ -138,6 +155,8 @@ public extension iPhoneDeviceFamily {
             return iPhone14ProMaxPixelSize
         case .iPhone16Pro:
             return iPhone16ProPixelSize
+        case .iPhone16ProMax:
+            return iPhone16ProMaxPixelSize
         }
     }
     
