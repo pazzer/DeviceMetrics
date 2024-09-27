@@ -14,7 +14,7 @@ let iPhone13MiniPointSize = CGSize(width: 375, height: 812)
 let iPhone8PlusPointSize = CGSize(width: 414, height: 736)
 let iPhone8PointSize = CGSize(width: 375, height: 667)
 let iPodGen7PointSize = CGSize(width: 320, height: 568)
-
+let iPhone16ProPointSize = CGSize(width: 402, height: 874)
 
 let iPodGen7PixelSize = CGSize(width: 640, height: 1136)
 let iPhone8PixelSize = CGSize(width: 750, height: 1334)
@@ -26,6 +26,7 @@ let iPhone14PixelSize = CGSize(width: 1170, height: 2532)
 let iPhone14PlusPixelSize = CGSize(width: 1284, height: 2778)
 let iPhone14ProPixelSize = CGSize(width: 1179, height: 2556)
 let iPhone14ProMaxPixelSize = CGSize(width: 1290, height: 2796)
+let iPhone16ProPixelSize = CGSize(width: 1206, height: 2622)
 
 
 public enum iPhoneDeviceFamily {
@@ -40,6 +41,7 @@ public enum iPhoneDeviceFamily {
     case iPhone8Plus
     case iPhone8
     case iPodGen7
+    case iPhone16Pro
 }
 
 public extension iPhoneDeviceFamily {
@@ -66,6 +68,8 @@ public extension iPhoneDeviceFamily {
             self = .iPhone14Pro
         case (iPhone14ProMaxPointSize, 3):
             self = .iPhone14ProMax
+        case (iPhone16ProPointSize, 3):
+            self = .iPhone16Pro
         default:
             return nil
         }
@@ -103,6 +107,8 @@ public extension iPhoneDeviceFamily {
             return iPhone14PointSize
         case .iPhone14ProMax:
             return iPhone14ProMaxPointSize
+        case .iPhone16Pro:
+            return iPhone14ProPointSize
         }
         
     }
@@ -130,6 +136,8 @@ public extension iPhoneDeviceFamily {
             return iPhone14ProPixelSize
         case .iPhone14ProMax:
             return iPhone14ProMaxPixelSize
+        case .iPhone16Pro:
+            return iPhone16ProPixelSize
         }
     }
     
