@@ -10,15 +10,15 @@ import UIKit
 /// CGSize.height == CGSize.height). These have therefore been removed, and replaced with integer equality checks. The DeviceSize
 /// struct - with its two integer properties - is used in place of CGSize to make this change explicit.
 public struct DeviceSize: Equatable {
-    let width: Int
-    let height: Int
+    public let width: Int
+    public let height: Int
     
-    init(width: Int, height: Int) {
+    public init(width: Int, height: Int) {
         self.width = width
         self.height = height
     }
     
-    init(from cgSize: CGSize) {
+    public init(from cgSize: CGSize) {
         self.width = Int(cgSize.width)
         self.height = Int(cgSize.height)
     }
