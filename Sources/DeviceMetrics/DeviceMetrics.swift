@@ -70,7 +70,7 @@ let iPhone16ProMaxPointSize = DeviceSize(width: 440, height: 956)
 let iPhone16ProMaxPixelSize = CGSize(width: 1320, height: 2868)
 
 
-public enum iPhoneDeviceFamily {
+public enum iPhoneDeviceFamily: String {
     
     case iPhone14ProMax
     case iPhone14Pro
@@ -84,6 +84,7 @@ public enum iPhoneDeviceFamily {
     case iPodGen7
     case iPhone16Pro
     case iPhone16ProMax
+    
 }
 
 public extension iPhoneDeviceFamily {
@@ -196,6 +197,7 @@ public extension UIDevice {
         let deviceSize = DeviceSize(from: UIScreen.main.bounds.size)
         Logger.general.info("looking for device family with point-size (w: \(deviceSize.width), h: \(deviceSize.height))")
         if let deviceFamily = iPhoneDeviceFamily(from: deviceSize, scale: UIScreen.main.scale) {
+            Logger.general.info("matched device to family \(deviceFamily.rawValue)")
             return deviceFamily
         } else {
             Logger.general.warning("failed to find device family matching point-size (w: \(deviceSize.width), h: \(deviceSize.height))")
