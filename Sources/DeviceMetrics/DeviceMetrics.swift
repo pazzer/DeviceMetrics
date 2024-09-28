@@ -4,56 +4,62 @@
 import Foundation
 import UIKit
 
-/// Crash reports were suggesting that on occassion `iPhoneDeviceFamily(from: UIScreen.main.bounds.size, scale: UIScreen.main.scale)`
+/// Crash reports were suggesting that on occassion `iPhoneDeviceFamily(from:)`
 /// was  returning nil. In the absence of a conclusive explanation, I've made the assumption that this unexpected behaviour was the
 /// result of a relying on a pair of notoriously unreliable floating-point equality checks (CGSize.width == CGSize.width &&
 /// CGSize.height == CGSize.height). These have therefore been removed, and replaced with integer equality checks. The DeviceSize
 /// struct - with its two integer properties - is used in place of CGSize to make this change explicit.
-struct DeviceSize {
+public struct DeviceSize: Equatable {
     let width: Int
     let height: Int
     
+    init(width: Int, height: Int) {
+        self.width = width
+        self.height = height
+    }
+    
     init(from cgSize: CGSize) {
-        return DeviceSize(width: Int(cgSize.width, height: Int(cgSize.height)))
+        self.width = Int(cgSize.width)
+        self.height = Int(cgSize.height)
     }
 }
 
 
 let iPhone14ProMaxPointSize = DeviceSize(width: 430, height: 932)
-let iPhone14ProMaxPixelSize = DeviceSize(width: 1290, height: 2796)
+let iPhone14ProMaxPixelSize = CGSize(width: 1290, height: 2796)
 
 let iPhone14ProPointSize = DeviceSize(width: 393, height: 852)
-let iPhone14ProPixelSize = DeviceSize(width: 1179, height: 2556)
+let iPhone14ProPixelSize = CGSize(width: 1179, height: 2556)
 
 let iPhone14PlusPointSize = DeviceSize(width: 428, height: 926)
-let iPhone14PlusPixelSize = DeviceSize(width: 1284, height: 2778)
+let iPhone14PlusPixelSize = CGSize(width: 1284, height: 2778)
 
 let iPhone14PointSize = DeviceSize(width: 390, height: 844)
-let iPhone14PixelSize = DeviceSize(width: 1170, height: 2532)
+let iPhone14PixelSize = CGSize(width: 1170, height: 2532)
 
 let iPhone11PointSize = DeviceSize(width: 414, height: 896)
-let iPhone11PixelSize = DeviceSize(width: 828, height: 1792)
+let iPhone11PixelSize = CGSize(width: 828, height: 1792)
 
 let iPhone11ProMaxPointSize = DeviceSize(width: 414, height: 896)
-let iPhone11ProMaxPixelSize = DeviceSize(width: 1242, height: 2688)
+let iPhone11ProMaxPixelSize = CGSize(width: 1242, height: 2688)
 
 let iPhone13MiniPointSize = DeviceSize(width: 375, height: 812)
-let iPhone13MiniPixelSize = DeviceSize(width: 1125, height: 2436)
+let iPhone13MiniPixelSize = CGSize(width: 1125, height: 2436)
 
 let iPhone8PlusPointSize = DeviceSize(width: 414, height: 736)
-let iPhone8PlusPixelSize = DeviceSize(width: 1080, height: 1920)
+let iPhone8PlusPixelSize = CGSize(width: 1080, height: 1920)
 
 let iPhone8PointSize = DeviceSize(width: 375, height: 667)
-let iPhone8PixelSize = DeviceSize(width: 750, height: 1334)
+let iPhone8PixelSize = CGSize(width: 750, height: 1334)
 
 let iPodGen7PointSize = DeviceSize(width: 320, height: 568)
-let iPodGen7PixelSize = DeviceSize(width: 640, height: 1136)
+let iPodGen7PixelSize = CGSize(width: 640, height: 1136)
 
 let iPhone16ProPointSize = DeviceSize(width: 402, height: 874)
-let iPhone16ProPixelSize = DeviceSize(width: 1206, height: 2622)
+let iPhone16ProPixelSize = CGSize(width: 1206, height: 2622)
 
 let iPhone16ProMaxPointSize = DeviceSize(width: 440, height: 956)
-let iPhone16ProMaxPixelSize = DeviceSize(width: 1320, height: 2868)
+let iPhone16ProMaxPixelSize = CGSize(width: 1320, height: 2868)
 
 
 public enum iPhoneDeviceFamily {
@@ -173,18 +179,13 @@ public extension iPhoneDeviceFamily {
             return iPhone16ProMaxPixelSize
         }
     }
-    
 }
     
-    
-
-
-
 public extension UIDevice {
     
     var family: iPhoneDeviceFamily? {
         let deviceSize = DeviceSize(from: UIScreen.main.bounds.size)
-        return iPhoneDeviceFamily(from: UIScreen.main.bounds.size, scale: UIScreen.main.scale)
+        return iPhoneDeviceFamily(from: deviceSize, scale: UIScreen.main.scale)
     }
     
 }
