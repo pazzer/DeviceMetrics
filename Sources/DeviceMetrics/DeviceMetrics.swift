@@ -195,12 +195,12 @@ public extension UIDevice {
     var family: iPhoneDeviceFamily? {
         
         let deviceSize = DeviceSize(from: UIScreen.main.bounds.size)
-        Logger.general.info("looking for device family with point-size (w: \(deviceSize.width), h: \(deviceSize.height))")
+        Logger.general.info("looking for device family to match device with point dimensions \(deviceSize.width) × \(deviceSize.height)...")
         if let deviceFamily = iPhoneDeviceFamily(from: deviceSize, scale: UIScreen.main.scale) {
-            Logger.general.info("matched device to family \(deviceFamily.rawValue)")
+            Logger.general.info("device shares dimensions with \(deviceFamily.rawValue)")
             return deviceFamily
         } else {
-            Logger.general.warning("failed to find device family matching point-size (w: \(deviceSize.width), h: \(deviceSize.height))")
+            Logger.general.warning("failed to match current device to any existing device family ")
             return nil
         }
         
