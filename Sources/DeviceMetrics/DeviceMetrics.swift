@@ -3,6 +3,14 @@
 
 import Foundation
 import UIKit
+import os
+
+extension Logger {
+    
+    private static var deviceMetrics = "device-metrics"
+    
+    static let general = Logger(subsystem: deviceMetrics, category: "general")
+}
 
 /// Crash reports were suggesting that on occassion `iPhoneDeviceFamily(from:)`
 /// was  returning nil. In the absence of a conclusive explanation, I've made the assumption that this unexpected behaviour was the
@@ -184,8 +192,16 @@ public extension iPhoneDeviceFamily {
 public extension UIDevice {
     
     var family: iPhoneDeviceFamily? {
+        
         let deviceSize = DeviceSize(from: UIScreen.main.bounds.size)
-        return iPhoneDeviceFamily(from: deviceSize, scale: UIScreen.main.scale)
+        Logger.general.info("looking for device family with point-size (w: \(deviceSize.width), h: \(deviceSize.height))")
+        if let deviceFamily = iPhoneDeviceFamily(from: deviceSize, scale: UIScreen.main.scale) {
+            return deviceFamily
+        } else {
+            Logger.general.warning("failed to find device family matching point-size (w: \(deviceSize.width), h: \(deviceSize.height))")
+            return nil
+        }
+        
     }
     
 }
